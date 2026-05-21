@@ -11,8 +11,15 @@ public class BankAccount {
     }
      public void deposit(double amount) // Deposit Method
      {
-         balance = balance + amount;
-         System.out.println(amount + " deposited Successfully!!");
+         if(amount>0)
+         {
+             balance = balance + amount;
+             System.out.println(amount + " deposited Successfully!!");
+         }
+         else
+         {
+             System.out.println("Invalid Deposit Amount");
+         }
      }
      public void withdraw(double amount) // Withdrawal Method
      {

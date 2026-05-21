@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
  {
      @Test
      void depositIncreasesBalance() {
-         // CHANGE THIS to your constructor
+
          BankAccount acc = new BankAccount("Goutham", 1000); // or new BankAccount(1000) or new BankAccount()
 
          acc.deposit(500);
@@ -20,6 +20,24 @@ import static org.junit.jupiter.api.Assertions.*;
 
          acc.withdraw(300);
          assertEquals(700, acc.getBalance());
+     }
+
+     @Test
+     void withdrawMoreThanBalanceShouldNotGoNegative()
+     {
+         BankAccount acc = new BankAccount("Goutham", 250);//Arrange
+
+         acc.withdraw(375);//Act
+         assertEquals(250, acc.getBalance(), "Balance should not go Negative");//Assert
+     }
+
+     @Test
+     void depositNegativeAmountShouldBeIgnored()
+     {
+         BankAccount acc = new BankAccount("Goutham", 800);
+
+         acc.deposit(-600);
+         assertEquals(800, acc.getBalance() , "Negative amount deposit should not change Balance");
      }
  }
 
