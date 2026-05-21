@@ -1,4 +1,4 @@
-package com.goutham.sdet.oop;
+package oop;
 
 public class BankAccount {
     String accountNo;

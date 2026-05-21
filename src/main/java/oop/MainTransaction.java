@@ -1,4 +1,4 @@
-package com.goutham.sdet.oop;
+package oop;
 
 public class MainTransaction {
     static double amount;

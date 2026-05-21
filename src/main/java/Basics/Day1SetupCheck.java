@@ -1,4 +1,4 @@
-package com.goutham.sdet.basics;
+package Basics;
 
 public class Day1SetupCheck {
     public static void main(String[] args)

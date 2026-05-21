@@ -1,4 +1,4 @@
-package com.goutham.sdet.basics;
+package Basics;
 
 public class Factorial_Iterative {
     public static void main(String[] args)
