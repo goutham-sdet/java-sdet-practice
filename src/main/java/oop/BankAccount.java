@@ -1,12 +1,12 @@
 package oop;
 
 public class BankAccount {
-    String accountNo;
+    String accountName;
     double balance;
 
-    public BankAccount(String accountNo , double balance) //Parameterized Constructor
+    public BankAccount(String accountName , double balance) //Parameterized Constructor
     {
-        this.accountNo = accountNo;
+        this.accountName = accountName;
         this.balance = balance;
     }
      public void deposit(double amount) // Deposit Method
