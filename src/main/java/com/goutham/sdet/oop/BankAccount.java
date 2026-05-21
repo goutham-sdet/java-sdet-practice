@@ -1,3 +1,5 @@
+package com.goutham.sdet.oop;
+
 public class BankAccount {
     String accountNo;
     double balance;

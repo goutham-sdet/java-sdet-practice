@@ -1,3 +1,5 @@
+package com.goutham.sdet.basics;
+
 public class Factorial_Recursive {
     static int factorial(int n)
     {

@@ -1,3 +1,5 @@
+package com.goutham.sdet.basics;
+
 import java.util.Scanner;
 
 public class ReverseString {

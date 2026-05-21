@@ -1,4 +1,4 @@
-import java.util.Scanner;
+package com.goutham.sdet.oop;
 
 public class MainTransaction {
     static double amount;
