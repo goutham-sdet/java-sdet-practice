@@ -23,7 +23,7 @@ public class BankAccount {
      }
      public void withdraw(double amount) // Withdrawal Method
      {
-         if (amount <= balance)
+         if (amount>0 && amount <= balance)
          {
              balance = balance - amount;
              System.out.println(amount + " withdrawn Successfully!!");
