@@ -52,6 +52,13 @@ A hands-on repository documenting my daily progress from manual tester to SDET, 
 - Intentionally broke a test to verify CI failure detection
 - Fixed and restored green pipeline
 - Proved end-to-end TDD workflow
+
+#### ✅ Day 7: Data-Driven Testing with Parameterized Tests
+- **Refactored** `BankAccountTest` from 4 separate methods to 2 data-driven tests
+- Implemented JUnit 5 `@ParameterizedTest` with `@CsvSource`
+- Now covers **9 scenarios** (deposits, withdrawals, overdrafts, negatives) with zero code duplication
+- Learned core SDET pattern: one test logic, many data sets
+- CI updated automatically — `mvn test` reports 9/9 passing
  
 ---
  
