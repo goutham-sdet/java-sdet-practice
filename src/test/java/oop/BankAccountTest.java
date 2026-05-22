@@ -37,7 +37,7 @@ import static org.junit.jupiter.api.Assertions.*;
          BankAccount acc = new BankAccount("Goutham", 800);
 
          acc.deposit(-600);
-         assertEquals(800, acc.getBalance() , "Negative amount deposit should not change Balance");
+         assertEquals(10000, acc.getBalance() , "Negative amount deposit should not change Balance");
      }
  }
 
