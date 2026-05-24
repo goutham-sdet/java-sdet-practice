@@ -1,10 +1,10 @@
 # java-sdet-practice
  
-[[CI](https://github.com/goutham-sdet/java-sdet-practice/actions/workflows/maven.yml/badge.svg)](https://github.com/goutham-sdet/java-sdet-practice/actions)
-[Java](https://img.shields.io/badge/Java-17-orange)
-[Maven](https://img.shields.io/badge/Build-Maven-blue)
-[Selenium](https://img.shields.io/badge/UI-Selenium_4.21-green)
-[TestNG](https://img.shields.io/badge/Testing-TestNG-red)
+[![CI](https://github.com/goutham-sdet/java-sdet-practice/actions/workflows/maven.yml/badge.svg)](https://github.com/goutham-sdet/java-sdet-practice/actions)
+![Java](https://img.shields.io/badge/Java-17-orange)
+![Maven](https://img.shields.io/badge/Build-Maven-blue)
+![Selenium](https://img.shields.io/badge/UI-Selenium_4.21-green)
+![TestNG](https://img.shields.io/badge/Testing-TestNG-red)
  
 > 45-day SDET journey: Java → JUnit → Selenium → TestNG → API → CI/CD
  
