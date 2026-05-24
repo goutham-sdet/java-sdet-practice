@@ -1,17 +1,25 @@
 # java-sdet-practice
  
-[![Java CI](https://github.com/goutham-sdet/java-sdet-practice/actions/workflows/maven.yml/badge.svg)](https://github.com/goutham-sdet/java-sdet-practice/actions/workflows/maven.yml)
+[[CI](https://github.com/goutham-sdet/java-sdet-practice/actions/workflows/maven.yml/badge.svg)](https://github.com/goutham-sdet/java-sdet-practice/actions)
+[Java](https://img.shields.io/badge/Java-17-orange)
+[Maven](https://img.shields.io/badge/Build-Maven-blue)
+[Selenium](https://img.shields.io/badge/UI-Selenium_4.21-green)
+[TestNG](https://img.shields.io/badge/Testing-TestNG-red)
  
-> 45-day SDET journey: Java → Selenium → TestNG → API → CI/CD
+> 45-day SDET journey: Java → JUnit → Selenium → TestNG → API → CI/CD
  
-A hands-on repository documenting my daily progress from manual tester to SDET, with production-grade code, unit tests, and automated CI.
+A hands-on repository documenting my daily progress from manual tester to SDET, with production-grade code, unit tests, and automated CI. All tests run headless in GitHub Actions.
+
+## 🗓️ 45-Day SDET Learning Journey
+
+Each day = working code + CI proof.  Focus: production patterns, not tutorials.
  
 ---
  
 ### Tech Stack
 - **Language:** Java 17
 - **Build:** Maven
-- **Testing:** JUnit 5
+- **Testing:** JUnit 5 (Parameterized)
 - **CI/CD:** GitHub Actions
 - **IDE:** IntelliJ IDEA
  
@@ -59,7 +67,31 @@ A hands-on repository documenting my daily progress from manual tester to SDET, 
 - Now covers **9 scenarios** (deposits, withdrawals, overdrafts, negatives) with zero code duplication
 - Learned core SDET pattern: one test logic, many data sets
 - CI updated automatically — `mvn test` reports 9/9 passing
- 
+
+#### ✅ Day 8: First Selenium Test + Headless Chrome for CI**  
+- `GoogleTest`: browser automation smoke check
+- `ChromeOptions` tuned for CI: `--headless=new`, `--no-sandbox`, `--disable-dev-shm-usage`
+- Defensive `@AfterEach`: `if (driver != null) driver.quit()` prevents resource leaks
+
+#### ✅ Day 9: Locators Deep Dive – 9 Strategies, 2 Programs**  
+- `LoginTest`: id, name, cssSelector, xpath with valid/invalid flows
+- `LocatorsDeepDiveTest`: linkText, partialLinkText, tagName, className, attribute CSS
+- **Debugging win:** Fixed `partialLinkText` ambiguity by targeting specific text
+- **SDET habit:** Assertions check URL/element text, never static page titles
+
+
+### 📊 Current Stats (Day 9)
+| Metric | Status |
+| --- | --- |
+| **Languages** | Java 17 |
+| **Build Tool** | Maven |
+| **Unit Testing** | JUnit 5 |
+| **UI Automation** | Selenium 4.21 + Chrome Headless |
+| **CI/CD** | GitHub Actions ✅ |
+| **Tests in CI** | 6 (2 unit, 4 UI) ✅ |
+| **Locators Mastered** | 9: id, name, css, xpath, linkText, partialLinkText, tagName, className, attribute |
+| **SDET Practices** | Defensive teardown, CI-specific flags, conventional commits |
+
 ---
  
 ### How to Run
