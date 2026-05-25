@@ -8,13 +8,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.time.Duration;
 import java.util.List;
 
 public class LocatorsDeepDiveTest
 {
     private WebDriver driver;
+    private WebDriverWait wait;
 
     @BeforeEach
     void Setup()
@@ -22,6 +26,7 @@ public class LocatorsDeepDiveTest
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless=new", "--no-sandbox", "--disable-dev-shm-usage");
         driver = new ChromeDriver(options);
+        wait = new WebDriverWait(driver,Duration.ofSeconds(10));
     }
 
     @Test
@@ -29,11 +34,16 @@ public class LocatorsDeepDiveTest
     {
         driver.get("https://the-internet.herokuapp.com/");
         //By linkText
-        driver.findElement(By.linkText("Form Authentication")).click();
+        WebElement formAuth = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Form Authentication")));
+        formAuth.click();
+        wait.until(ExpectedConditions.urlContains("login"));
         assertTrue(driver.getCurrentUrl().contains("login"));
+
         driver.navigate().back();
         //By partialLinkText
-        driver.findElement(By.partialLinkText("Dynamic Loading")).click();
+        WebElement DynamicLink = wait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText("Dynamic Loading")));
+        DynamicLink.click();
+        wait.until(ExpectedConditions.urlContains("dynamic_loading"));
         assertTrue(driver.getCurrentUrl().contains("dynamic_loading"));
     }
 
@@ -42,10 +52,10 @@ public class LocatorsDeepDiveTest
     {
         driver.get("https://the-internet.herokuapp.com/checkboxes");
         //By Tagname
-        List<WebElement> checkboxes = driver.findElements(By.tagName("input"));
+        List<WebElement> checkboxes = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.tagName("input")));
         assertEquals(2, checkboxes.size());
         //By cssSelector
-        WebElement firstBox = driver.findElement(By.cssSelector("input[type='checkbox']"));
+        WebElement firstBox = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='checkbox']")));
        if (!firstBox.isSelected())
        {
            firstBox.click();
@@ -53,7 +63,7 @@ public class LocatorsDeepDiveTest
        assertTrue(firstBox.isSelected());
        //By className
        driver.get("https://the-internet.herokuapp.com/");
-       WebElement heading = driver.findElement(By.className("heading"));
+       WebElement heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("heading")));
        assertEquals("Welcome to the-internet", heading.getText());
     }
 
