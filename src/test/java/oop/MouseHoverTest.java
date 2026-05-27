@@ -27,13 +27,13 @@ public class MouseHoverTest
     @Test
     void hoverRevealsCaption()
     {
-        driver.get("https://the-internet.herokuapp.com");
-        WebElement hover = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".figure:nth-child(3)")));
+        driver.get("https://the-internet.herokuapp.com/hovers");
+        WebElement hover = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='figure'])[1]/img")));
         // Hover over first Element
-        actions.moveToElement(hover).perform();
+        actions.moveToElement(hover).pause(Duration.ofMillis(800)).perform();
 
         // Fetch the text which appears after hovering for Validation
-        WebElement caption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".figure:nth-child(3) .figcaption h5")));
+        WebElement caption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='figure'])[1]//div[@class='figcaption']/h5")));
         assertTrue(caption.getText().contains("name: user1"));
     }
 
