@@ -2,10 +2,10 @@
  
 [![CI](https://github.com/goutham-sdet/java-sdet-practice/actions/workflows/maven.yml/badge.svg)](https://github.com/goutham-sdet/java-sdet-practice/actions)
 ![Java](https://img.shields.io/badge/Java-17-orange)
+![JUnit 5](https://img.shields.io/badge/Testing-JUnit_5-25A162?logo=junit5&logoColor=white)
+![Selenium](https://img.shields.io/badge/Selenium-4.25-green)
 ![Maven](https://img.shields.io/badge/Build-Maven-blue)
-![Selenium](https://img.shields.io/badge/UI-Selenium_4.21-green)
-![TestNG](https://img.shields.io/badge/Testing-TestNG-red)
- 
+
 > 45-day SDET journey: Java → JUnit → Selenium → TestNG → API → CI/CD
  
 A hands-on repository documenting my daily progress from manual tester to SDET, with production-grade code, unit tests, and automated CI. All tests run headless in GitHub Actions.
@@ -17,32 +17,34 @@ Each day = working code + CI proof.  Focus: production patterns, not tutorials.
 ---
  
 ### Tech Stack
+
 - **Language:** Java 17
 - **Build:** Maven
 - **Testing:** JUnit 5 (Parameterized)
+- **UI Automation:** Selenium 4.25.0 + Chrome Headless
 - **CI/CD:** GitHub Actions
 - **IDE:** IntelliJ IDEA
- 
+
 ---
- 
+
 ### Progress Tracker
- 
+
 #### ✅ Day 1: Environment Setup
 - JDK 17 installed and configured
 - IntelliJ IDEA + Maven project initialized
 - Git + GitHub connected
 - First Java program running
- 
+
 #### ✅ Day 2: Project Structure Cleanup
 - Fixed nested folder issue (`java-sdet-practice/java-sdet-practice`)
 - Created proper Maven standard layout
 - Added `.gitignore` for Java/Maven/IntelliJ
- 
+
 #### ✅ Day 3: Core Java OOP
 - Implemented `BankAccount` class (encapsulation, deposit, withdraw)
 - Created `MainTransaction` demo runner
 - Practiced constructors, methods, and validation logic
- 
+
 #### ✅ Day 4: Unit Testing with JUnit 5
 - Added `BankAccountTest` with 4 independent tests:
     - `depositIncreasesBalance`
@@ -50,12 +52,12 @@ Each day = working code + CI proof.  Focus: production patterns, not tutorials.
     - `overdrawIsPrevented`
     - `negativeDepositIsIgnored`
 - All tests run via `mvn test`
- 
+
 #### ✅ Day 5: Continuous Integration
-- Added GitHub Actions workflow (`.github/workflows/maven.yml`)
+- Added GitHub Actions workflow `.github/workflows/maven.yml`
 - Automated build on every push to `main`
 - First green build achieved
- 
+
 #### ✅ Day 6: CI Validation
 - Intentionally broke a test to verify CI failure detection
 - Fixed and restored green pipeline
@@ -64,44 +66,69 @@ Each day = working code + CI proof.  Focus: production patterns, not tutorials.
 #### ✅ Day 7: Data-Driven Testing with Parameterized Tests
 - **Refactored** `BankAccountTest` from 4 separate methods to 2 data-driven tests
 - Implemented JUnit 5 `@ParameterizedTest` with `@CsvSource`
-- Now covers **9 scenarios** (deposits, withdrawals, overdrafts, negatives) with zero code duplication
-- Learned core SDET pattern: one test logic, many data sets
+- Now covers **9 scenarios** with zero code duplication
 - CI updated automatically — `mvn test` reports 9/9 passing
 
-#### ✅ Day 8: First Selenium Test + Headless Chrome for CI**  
-- `GoogleTest`: browser automation smoke check
+#### ✅ Day 8: First Selenium Test + Headless Chrome for CI
+- `GoogleTest` / `LoginTest`: browser automation smoke check
 - `ChromeOptions` tuned for CI: `--headless=new`, `--no-sandbox`, `--disable-dev-shm-usage`
 - Defensive `@AfterEach`: `if (driver != null) driver.quit()` prevents resource leaks
 
-#### ✅ Day 9: Locators Deep Dive – 9 Strategies, 2 Programs**  
+#### ✅ Day 9: Locators Deep Dive – 9 Strategies
 - `LoginTest`: id, name, cssSelector, xpath with valid/invalid flows
 - `LocatorsDeepDiveTest`: linkText, partialLinkText, tagName, className, attribute CSS
 - **Debugging win:** Fixed `partialLinkText` ambiguity by targeting specific text
 - **SDET habit:** Assertions check URL/element text, never static page titles
 
+#### ✅ Day 10: Waits – Explicit & Fluent
+- **ExplicitWaitTest:** `visibilityOfElementLocated`, `elementToBeClickable`, `textToBePresent`
+- **FluentWaitTest:** custom polling 500ms, ignoring `NoSuchElementException`, lambda conditions
+- Replaced all flaky `findElement` calls with `WebDriverWait`
+- **Key learning:** Explicit wait solves 95% of timing issues; never use `Thread.sleep`
 
-### 📊 Current Stats (Day 9)
+#### ✅ Day 11: Actions Class & Select Dropdowns
+- **DropdownTest:** `Select` with `selectByVisibleText`, `selectByValue`, `getOptions`, `isMultiple`
+- **MouseHoverTest:** `moveToElement` with pause, `dragAndDrop`, `contextClick`
+- **Debugging win:** Headless hover failed → fixed by targeting inner `<img>` + 800ms pause for CSS transition
+- All action tests stable in CI
+
+#### ✅ Day 12: Frames, Alerts & Windows
+- **FramesAlertsTest:**
+    - `switchTo().frame()` and `defaultContent()` verified
+    - JS Alert accept, Confirm dismiss, Prompt sendKeys with `alertIsPresent()`
+    - **Real-world fix:** TinyMCE hit read-only quota on herokuapp → migrated iframe test to stable `demoqa.com/frames`
+    - Replaced `clear()` on contenteditable with `Ctrl+A` + `Delete` via Actions
+- **WindowHandlesTest:**
+    - `getWindowHandles()` loop, `switchTo().window()`, `close()` and return to parent
+- Context switching always guarded by explicit waits
+
+### 📊 Current Stats (Day 12)
+
 | Metric | Status |
 | --- | --- |
 | **Languages** | Java 17 |
 | **Build Tool** | Maven |
-| **Unit Testing** | JUnit 5 |
-| **UI Automation** | Selenium 4.21 + Chrome Headless |
+| **Unit Testing** | JUnit 5 Parameterized |
+| **UI Automation** | Selenium 4.25 + Chrome Headless |
 | **CI/CD** | GitHub Actions ✅ |
-| **Tests in CI** | 6 (2 unit, 4 UI) ✅ |
+| **Tests in CI** | 20+ (9 unit scenarios + 11 UI) ✅ |
 | **Locators Mastered** | 9: id, name, css, xpath, linkText, partialLinkText, tagName, className, attribute |
-| **SDET Practices** | Defensive teardown, CI-specific flags, conventional commits |
+| **SDET Practices** | Defensive teardown, explicit waits, Actions chains, frame/alert/window handling, conventional commits |
 
 ---
- 
+
 ### How to Run
+
 ```bash
 # Clone
 git clone https://github.com/goutham-sdet/java-sdet-practice.git
 cd java-sdet-practice
- 
+
 # Run all tests
 mvn test
- 
+
 # Run single test
 mvn test -Dtest=BankAccountTest
+
+# Run UI suite only
+mvn test -Dtest=LoginTest,LocatorsDeepDiveTest,ExplicitWaitTest,FluentWaitTest,DropdownTest,MouseHoverTest,FramesAlertsTest,WindowHandlesTest
