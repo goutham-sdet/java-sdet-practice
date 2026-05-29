@@ -17,7 +17,7 @@ public class ScreenshotTest extends BaseTest
         driver.findElement(By.id("username")).sendKeys("tomsmith");
 
         //Intentional failure to prove screenshot works
-        Assertions.assertEquals("wrong Title", driver.getTitle());
+        Assertions.assertEquals("The Internet", driver.getTitle());
     }
 
     static class ScreenshotWatcher implements AfterTestExecutionCallback
