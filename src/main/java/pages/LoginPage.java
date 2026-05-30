@@ -29,7 +29,6 @@ public class LoginPage extends BasePage
 
     public String getFlashText()
     {
-        System.out.println("wait Timeout = " , wait.getTimeout());
         return driver.findElement(flash).getText();
     }
 }
