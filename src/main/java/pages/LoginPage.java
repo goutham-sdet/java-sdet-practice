@@ -22,13 +22,13 @@ public class LoginPage extends BasePage
 
     public void login(String user , String pass)
     {
-        driver.findElement(username).sendKeys(user);
-        driver.findElement(password).sendKeys(pass);
-        driver.findElement(loginBtn).click();
+        type(username, user);
+        type(password, pass);
+        click(loginBtn);
     }
 
     public String getFlashText()
     {
-        return driver.findElement(flash).getText();
+        return waitForVisible(flash).getText();
     }
 }
