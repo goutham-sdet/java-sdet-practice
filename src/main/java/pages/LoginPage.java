@@ -20,15 +20,22 @@ public class LoginPage extends BasePage
         driver.get("https://the-internet.herokuapp.com/login");
     }
 
-    public void login(String user , String pass)
+    public SecureAreaPage login(String user , String pass)
     {
         type(username, user);
         type(password, pass);
         click(loginBtn);
+        waitForUrlContains("/secure");
+        return new SecureAreaPage(driver);
     }
 
     public String getFlashText()
     {
-        return waitForVisible(flash).getText();
+        return getFlashText(flash);
+    }
+
+    public Boolean waitForFlash(String expectedText)
+    {
+        return waitForFlashContains(flash, expectedText);
     }
 }

@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,9 +24,23 @@ public class BasePage
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    protected WebElement waitForClickable(By locator)
+    {
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
     protected void click(By locator)
     {
-        waitForVisible(locator).click();
+        try
+        {
+            waitForClickable(locator).click();
+        }
+        catch (Exception e)
+        {
+            // Fallback to JS click if normal click is intercepted
+            WebElement el = waitForVisible(locator);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();",el);
+        }
     }
 
     protected void type(By locator, String text)
@@ -33,5 +48,20 @@ public class BasePage
         WebElement el = waitForVisible(locator);
         el.clear();
         el.sendKeys(text);
+    }
+
+    protected void waitForUrlContains(String fraction)
+    {
+        wait.until(ExpectedConditions.urlContains(fraction));
+    }
+
+    protected Boolean waitForFlashContains(By flashLocator, String text)
+    {
+        return wait.until(ExpectedConditions.textToBePresentInElementLocated(flashLocator, text));
+    }
+
+    protected String getFlashText(By flashLocator)
+    {
+        return waitForVisible(flashLocator).getText().replace("×", "").trim();
     }
 }
