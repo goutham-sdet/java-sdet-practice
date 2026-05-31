@@ -16,7 +16,7 @@ public class BasePage
     public BasePage(WebDriver driver)
     {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver,Duration.ofSeconds(15));
     }
 
     protected WebElement waitForVisible(By locator)
@@ -57,6 +57,8 @@ public class BasePage
 
     protected Boolean waitForFlashContains(By flashLocator, String text)
     {
+        // Wait for element to be present first, then for text
+        wait.until(ExpectedConditions.presenceOfElementLocated(flashLocator));
         return wait.until(ExpectedConditions.textToBePresentInElementLocated(flashLocator, text));
     }
 
