@@ -20,11 +20,17 @@ public class LoginPage extends BasePage
         driver.get("https://the-internet.herokuapp.com/login");
     }
 
-    public SecureAreaPage login(String user , String pass)
+    // Just submits the form, does NOT wait for /secure
+    public void submitLogin(String user, String pass)
     {
         type(username, user);
         type(password, pass);
         click(loginBtn);
+    }
+
+    public SecureAreaPage login(String user , String pass)
+    {
+        submitLogin(user, pass);
         waitForUrlContains("/secure");
         return new SecureAreaPage(driver);
     }
