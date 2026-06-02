@@ -102,6 +102,28 @@ Each day = working code + CI proof.  Focus: production patterns, not tutorials.
     - `getWindowHandles()` loop, `switchTo().window()`, `close()` and return to parent
 - Context switching always guarded by explicit waits
 
+### ✅ Day 13 – 31 May 2026
+**Focus:** Framework foundation – centralized driver management
+**What I did:**
+- Created `BaseTest.java` with `@BeforeEach` / `@AfterEach` lifecycle
+- Integrated **WebDriverManager 5.8.0** for automatic driver binaries
+- Added headless Chrome support for CI (`--headless=new`, `--no-sandbox`, `--disable-dev-shm-usage`)
+- Implemented unique Chrome profile per thread to fix `DevToolsActivePort` errors:
+    - `UUID.randomUUID()` for `--user-data-dir`
+    - Random `--remote-debugging-port` (9222-11222)
+- Set implicit wait to 0, enforcing explicit waits only
+- **Commit:** `feat: add BaseTest with parallel-safe Chrome options`
+ 
+### ✅ Day 14 – 01 June 2026
+**Focus:** Data-driven testing & test design
+**What I did:**
+- Added `junit-jupiter-params:5.10.2` dependency to pom.xml
+- Built `LoginDataDrivenTest` using JUnit5 `@ParameterizedTest` + `@CsvSource`
+- Covered 3 login scenarios in one method: valid, invalid password, invalid username
+- Refactored all page objects to accept `WebDriver` via constructor (POM best practice)
+- Made all test methods `public void` for reliable Maven Surefire discovery
+- **Commit:** `feat: implement data-driven login with parameterized tests`
+
 ### 📊 Current Stats (Day 12)
 
 | Metric | Status |
