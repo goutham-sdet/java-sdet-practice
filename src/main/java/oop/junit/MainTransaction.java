@@ -1,4 +1,4 @@
-package oop;
+package oop.junit;
 
 public class MainTransaction {
     static double amount;

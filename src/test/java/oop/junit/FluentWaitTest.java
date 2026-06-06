@@ -1,4 +1,4 @@
-package oop;
+package oop.junit;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;

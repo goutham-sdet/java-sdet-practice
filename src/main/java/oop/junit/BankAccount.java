@@ -1,4 +1,4 @@
-package oop;
+package oop.junit;
 
 public class BankAccount {
     private final String accountName;

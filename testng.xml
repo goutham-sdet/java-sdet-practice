@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="New TestNG Suite" parallel="methods" thread-count="4">
+    <test name="TestNG Tests">
+        <packages>
+            <package name="oop.testng"/> <!-- we'll put new tests here -->
+        </packages>
+    </test>
+</suite>
