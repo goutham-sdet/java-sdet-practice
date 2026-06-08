@@ -33,9 +33,9 @@ public class BaseTestNG
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless=new", "--no-sandbox", "--disable-dev-shm-usage",
                 "--window-size=1920,1080", "--disable-gpu", "--remote-allow-origins=*");
-        String userDataDir = System.getProperty("java.io.tmpdir") + "/chrome-" + UUID.randomUUID();
+        /* String userDataDir = System.getProperty("java.io.tmpdir") + "/chrome-" + UUID.randomUUID();
         options.addArguments("--user-data-dir=" + userDataDir);
-        options.addArguments("--remote-debugging-port=" + (9222 + new Random().nextInt(2000)));
+        options.addArguments("--remote-debugging-port=" + (9222 + new Random().nextInt(2000))); */
 
         tlDriver.set(new ChromeDriver(options));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
