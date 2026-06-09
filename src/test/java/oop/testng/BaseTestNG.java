@@ -21,7 +21,7 @@ public class BaseTestNG
     private static final ThreadLocal<WebDriver> tlDriver = new ThreadLocal<> ();
     protected WebDriverWait wait;
 
-    protected WebDriver getDriver()
+    public WebDriver getDriver()
     {
         return tlDriver.get();
     }

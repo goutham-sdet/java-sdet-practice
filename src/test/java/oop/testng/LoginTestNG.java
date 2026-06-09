@@ -18,7 +18,7 @@ public class LoginTestNG extends BaseTestNG
                 };
     }
 
-    @Test (dataProvider = "logins")
+    @Test (dataProvider = "logins", retryAnalyzer = oop.testng.listeners.RetryAnalyzer.class)
     public void loginTest( String user, String pass, boolean shouldPass)
     {
         LoginPage login = new LoginPage(getDriver());
