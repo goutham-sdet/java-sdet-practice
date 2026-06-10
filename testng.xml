@@ -9,4 +9,12 @@
             <class name="oop.testng.LoginTestNG"/>
         </classes>
     </test>
+
+    <test name="AdvancedInteractions">
+            <classes>
+                    <class name="ui.advanced.ActionsTest"/>
+                    <class name="ui.advanced.JSExecutorTest"/>
+                    <class name="ui.advanced.ShadowDomTest"/>
+            </classes>
+    </test>
 </suite>
