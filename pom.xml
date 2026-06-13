@@ -90,14 +90,12 @@
                 <configuration>
                     <useModulePath>false</useModulePath>
                     <printSummary>true</printSummary>
-                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
                     <forkCount>1</forkCount>
                     <reuseForks>true</reuseForks>
-                    <!-- Run TestNG suites AND JUnit5 tests -->
+                    <failIfNoTests>false</failIfNoTests>
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
-                    <failIfNoTests>false</failIfNoTests>
                     <systemPropertyVariables>
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>

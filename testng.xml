@@ -17,4 +17,10 @@
                     <class name="ui.advanced.ShadowDomTest"/>
             </classes>
     </test>
+
+    <test name="API">
+        <classes>
+            <class name="api.UsersApiTest"/>
+        </classes>
+    </test>
 </suite>
