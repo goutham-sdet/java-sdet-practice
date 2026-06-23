@@ -1,10 +1,19 @@
 package api.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)  // tells jackson to ignore the other fields
 public class User
 {
     private String firstName;
     private String lastName;
     private int age;
+
+    // no - arguments constructor : Mandatory for JACKSON to create the object
+    public User()
+    {
+
+    }
 
     public User(String f, String l, int a)
     {

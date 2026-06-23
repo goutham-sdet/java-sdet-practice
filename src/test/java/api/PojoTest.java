@@ -1,4 +1,4 @@
-/*package api;
+package api;
 
 import api.BaseApiTest;
 import api.pojo.User;
@@ -35,4 +35,3 @@ public class PojoTest extends BaseApiTest
         System.out.println("User: " + u.getFirstName() + " age " + u.getAge());
     }
 }
-*/
