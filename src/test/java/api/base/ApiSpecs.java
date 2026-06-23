@@ -9,15 +9,15 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import static org.hamcrest.Matchers.lessThan;
+import io.qameta.allure.restassured.AllureRestAssured;
 
 public class ApiSpecs
 {
-    public static RequestSpecification requestSpec()
-    {
+    public static RequestSpecification requestSpec() {
         return new RequestSpecBuilder()
                 .setBaseUri("https://dummyjson.com")
                 .setContentType(ContentType.JSON)
-                .addFilter(new RequestLoggingFilter(LogDetail.METHOD))
+                .addFilter(new AllureRestAssured()) // <-- captures request/response in report
                 .addFilter(new RequestLoggingFilter(LogDetail.URI))
                 .addFilter(new ResponseLoggingFilter(LogDetail.STATUS))
                 .build();
