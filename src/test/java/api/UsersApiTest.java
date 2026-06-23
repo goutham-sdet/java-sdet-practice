@@ -1,6 +1,6 @@
 package api;
 
-import io.restassured.http.ContentType;
+import api.base.BaseApiTest;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;

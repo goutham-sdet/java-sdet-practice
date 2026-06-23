@@ -1,6 +1,6 @@
 package api;
 
-import api.BaseApiTest;
+import api.base.BaseApiTest;
 import api.pojo.User;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
