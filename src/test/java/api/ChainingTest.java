@@ -1,4 +1,4 @@
-/*package api;
+package api;
 
 import api.BaseApiTest;
 import org.testng.annotations.Test;
@@ -9,45 +9,51 @@ public class ChainingTest extends BaseApiTest
 {
     static int userId;
 
-    @Test
-    public void test1_CreateUser()
-    {
-        String body = """
-                {"firstName":"Goutham",
-                "lastName":"SDET",
-                "age":25}
-                """;
-        userId = given()
-                .body(body)
-                .when()
-                .post("/users/add")
-                .then()
-                .statusCode(201)
-                .extract()
-                .path("id");
-        System.out.println("Created ID = " + userId);
-    }
+    // Since we are using mock api , we are not using POST method as it doesn't store any new data.
 
-    @Test(dependsOnMethods = "test1_CreateUser")
-    public void test2_GetUser()
+    @Test
+    public void test1_GetExistingUser()
     {
-        given()
+        // Step 1: GET an existing user and EXTRACT the id (chaining starts here)
+        userId = given()
                 .when()
-                .get("/users/" + userId)
+                .get("/users/1")
                 .then()
                 .statusCode(200)
+                .extract()
+                .path("id");
+
+        System.out.println("Using existing ID = " + userId);
+    }
+
+    @Test(dependsOnMethods = "test1_GetExistingUser")
+    public void test2_UpdateUser()
+    {
+        // Step 2: Use the extracted id to UPDATE
+        String updateBody = """
+                {"firstName":"GouthamUpdated"}
+                """;
+
+        given()
+                .body(updateBody)
+                .when()
+                .put("/users/" + userId)
+                .then()
+                .statusCode(200)
+                .body("firstName", equalTo("GouthamUpdated"))
                 .body("id", equalTo(userId));
     }
 
-    @Test(dependsOnMethods = "test2_GetUser")
+    @Test(dependsOnMethods = "test2_UpdateUser")
     public void test3_DeleteUser()
     {
+        // Step 3: Use same id to DELETE
         given()
                 .when()
                 .delete("/users/" + userId)
                 .then()
                 .statusCode(200)
+                .body("id", equalTo(userId))
                 .body("isDeleted", equalTo(true));
     }
 }
-*/
