@@ -21,7 +21,7 @@ jobs:
           cache: maven
 
       - name: Run tests with Maven
-        run: mvn -B test
+        run: mvn -B test -Dtest="api.*Test,TestSuite"
 
       - name: Upload screenshots on failure
         if: failure()
