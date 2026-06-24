@@ -1,5 +1,6 @@
 package api.base;
 
+import api.utils.ConfigManager;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -15,7 +16,7 @@ public class ApiSpecs
 {
     public static RequestSpecification requestSpec() {
         return new RequestSpecBuilder()
-                .setBaseUri("https://dummyjson.com")
+                .setBaseUri(ConfigManager.get("base.url"))
                 .setContentType(ContentType.JSON)
                 .addFilter(new AllureRestAssured()) // <-- captures request/response in report
                 .addFilter(new RequestLoggingFilter(LogDetail.URI))
