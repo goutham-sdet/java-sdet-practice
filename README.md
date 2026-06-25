@@ -7,6 +7,8 @@
 ![Build](https://img.shields.io/badge/Build-Maven-blue)
 ![Allure](https://img.shields.io/badge/Reporting-Allure-purple)
 ![WebDriverManager](https://img.shields.io/badge/Driver-WebDriverManager-yellow)
+[![Allure Report](https://img.shields.io/badge/Allure_Report-Live-brightgreen?logo=allure&logoColor=white)](https://goutham-sdet.github.io/java-sdet-practice/allure/)
+[![API Tests](https://img.shields.io/badge/API-Parallel_4_threads-blue)](#)
 
 > 45-day SDET journey: Java → JUnit → Selenium → TestNG → API → CI/CD
  
