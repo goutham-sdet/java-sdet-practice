@@ -1,26 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="New TestNG Suite" parallel="methods" thread-count="4">
+<suite name="New TestNG Suite">
     <listeners>
-            <listener class-name="oop.testng.listeners.TestListener"/>
+        <listener class-name="oop.testng.listeners.TestListener"/>
     </listeners>
 
     <test name="Login Tests">
-        <classes>
-            <class name="oop.testng.LoginTestNG"/>
-        </classes>
+        <classes><class name="oop.testng.LoginTestNG"/></classes>
     </test>
 
     <test name="AdvancedInteractions">
-            <classes>
-                    <class name="ui.advanced.ActionsTest"/>
-                    <class name="ui.advanced.JSExecutorTest"/>
-                    <class name="ui.advanced.ShadowDomTest"/>
-            </classes>
+        <classes>
+            <class name="ui.advanced.ActionsTest"/>
+            <class name="ui.advanced.JSExecutorTest"/>
+            <class name="ui.advanced.ShadowDomTest"/>
+        </classes>
     </test>
 
-    <test name="API">
-        <classes>
-            <class name="api.UsersApiTest"/>
-        </classes>
+    <test name="API" parallel="methods" thread-count="4">
+        <packages><package name="api"/></packages>
     </test>
 </suite>
