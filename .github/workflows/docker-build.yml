@@ -1,0 +1,16 @@
+name: Docker Build Check
+on:
+  push:
+    paths:
+      - 'Dockerfile'
+      - '.github/workflows/docker-build.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker image
+        run: docker build -t sdet-api-tests .
+      - name: Test image runs
+        run: docker run --rm sdet-api-tests echo "Docker OK"
