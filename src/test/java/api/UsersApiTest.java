@@ -2,13 +2,16 @@ package api;
 
 import api.base.BaseApiTest;
 import org.testng.annotations.Test;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 public class UsersApiTest extends BaseApiTest
 {
     @Test
-    public void testGetAllUsers() {
+    public void testGetAllUsers()
+    {
         given()
                 .when()
                 .get("/users")
@@ -18,7 +21,8 @@ public class UsersApiTest extends BaseApiTest
     }
 
     @Test
-    public void testGetSingleUser() {
+    public void testGetSingleUser()
+    {
         given()
                 .when()
                 .get("/users/1")
@@ -29,20 +33,19 @@ public class UsersApiTest extends BaseApiTest
     }
 
     @Test
-    public void testCreateUser() {
-        String body = """
-                {"firstName":"Test",
-                "lastName":"User",
-                "age":30}
-                """;
+    public void testCreateUser()
+    {
+        Map<String, Object> user = utils.TestDataFactory.randomUserForCreate();
 
         given()
-                .body(body)
+                .body(user)
                 .when()
                 .post("/users/add")
                 .then()
                 .statusCode(201)
-                .body("firstName", equalTo("Test"));
+                .body("firstName", equalTo(user.get("firstName")));
+
+        System.out.println("Created user: " + user);
     }
 
     @Test
