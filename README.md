@@ -10,202 +10,126 @@
 [![Allure Report](https://img.shields.io/badge/Allure_Report-Live-brightgreen?logo=allure&logoColor=white)](https://goutham-sdet.github.io/java-sdet-practice/allure/)
 [![API Tests](https://img.shields.io/badge/API-Parallel_4_threads-blue)](#)
 
-> 45-day SDET journey: Java → JUnit → Selenium → TestNG → API → CI/CD
+This repository documents my transition from Manual QA Engineer to Software Development Engineer in Test (SDET).
  
-A hands-on repository documenting my daily progress from manual tester to SDET, with production-grade code, unit tests, and automated CI. All tests run headless in GitHub Actions.
-
-## 🗓️ 45-Day SDET Learning Journey
-
-Each day = working code + CI proof.  Focus: production patterns, not tutorials.
+The project follows a structured roadmap covering Core Java, JUnit 5, TestNG, Selenium WebDriver, Design Patterns, API Testing, and CI/CD.
  
+Instead of tutorial code, every implementation focuses on production-style automation practices including Page Object Model, ThreadLocal WebDriver, parallel execution, retry mechanisms, reporting, and GitHub Actions.
+
 ---
  
-### Tech Stack
-- **Language:** Java 17
-- **Build:** Maven 3.9
-- **Testing:** JUnit 5 (Parameterized) + TestNG 7.9.0 (Parallel, DataProvider, Listeners)
-- **UI Automation:** Selenium 4.25.0 + Chrome Headless + WebDriverManager
-- **Framework Patterns:** Page Object Model, ThreadLocal WebDriver, RetryAnalyzer, ITestListener
-- **Reporting:** Allure Framework
-- **CI/CD:** GitHub Actions
-- **IDE:** IntelliJ IDEA
+## 🛠️ Tech Stack
+ 
+### Core
+![Java](https://img.shields.io/badge/Java-17-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Maven](https://img.shields.io/badge/Maven-3.9-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)
+ 
+### UI Automation
+![Selenium](https://img.shields.io/badge/Selenium-4.18-43B02A?style=for-the-badge&logo=selenium&logoColor=white)
+![TestNG](https://img.shields.io/badge/TestNG-7.8-FF6C37?style=for-the-badge)
+![JUnit5](https://img.shields.io/badge/JUnit5-5.10-25A162?style=for-the-badge&logo=junit5&logoColor=white)
+ 
+### API Automation
+![RestAssured](https://img.shields.io/badge/REST_Assured-5.4-000000?style=for-the-badge)
+![JSON Schema](https://img.shields.io/badge/JSON_Schema-Validator-blue?style=for-the-badge)
+![WireMock](https://img.shields.io/badge/WireMock-Mocking-orange?style=for-the-badge)
+ 
+### Framework & Design
+![POM](https://img.shields.io/badge/Page_Object_Model-Implemented-success?style=for-the-badge)
+![Parallel](https://img.shields.io/badge/Parallel-4_Threads-informational?style=for-the-badge)
+ 
+### DevOps & CI/CD
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI/CD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+ 
+### Reporting & Logging
+![Allure](https://img.shields.io/badge/Allure-Report-FF4F8B?style)
 
 ---
 
-### Progress Tracker
-
-#### ✅ Day 1: Environment Setup
-- JDK 17 installed and configured
-- IntelliJ IDEA + Maven project initialized
-- Git + GitHub connected
-- First Java program running
-
-#### ✅ Day 2: Project Structure Cleanup
-- Fixed nested folder issue (`java-sdet-practice/java-sdet-practice`)
-- Created proper Maven standard layout
-- Added `.gitignore` for Java/Maven/IntelliJ
-
-#### ✅ Day 3: Core Java OOP
-- Implemented `BankAccount` class (encapsulation, deposit, withdraw)
-- Created `MainTransaction` demo runner
-- Practiced constructors, methods, and validation logic
-
-#### ✅ Day 4: Unit Testing with JUnit 5
-- Added `BankAccountTest` with 4 independent tests:
-    - `depositIncreasesBalance`
-    - `withdrawDecreasesBalance`
-    - `overdrawIsPrevented`
-    - `negativeDepositIsIgnored`
-- All tests run via `mvn test`
-
-#### ✅ Day 5: Continuous Integration
-- Added GitHub Actions workflow `.github/workflows/maven.yml`
-- Automated build on every push to `main`
-- First green build achieved
-
-#### ✅ Day 6: CI Validation
-- Intentionally broke a test to verify CI failure detection
-- Fixed and restored green pipeline
-- Proved end-to-end TDD workflow
-
-#### ✅ Day 7: Data-Driven Testing with Parameterized Tests
-- **Refactored** `BankAccountTest` from 4 separate methods to 2 data-driven tests
-- Implemented JUnit 5 `@ParameterizedTest` with `@CsvSource`
-- Now covers **9 scenarios** with zero code duplication
-- CI updated automatically — `mvn test` reports 9/9 passing
-
-#### ✅ Day 8: First Selenium Test + Headless Chrome for CI
-- `GoogleTest` / `LoginTest`: browser automation smoke check
-- `ChromeOptions` tuned for CI: `--headless=new`, `--no-sandbox`, `--disable-dev-shm-usage`
-- Defensive `@AfterEach`: `if (driver != null) driver.quit()` prevents resource leaks
-
-#### ✅ Day 9: Locators Deep Dive – 9 Strategies
-- `LoginTest`: id, name, cssSelector, xpath with valid/invalid flows
-- `LocatorsDeepDiveTest`: linkText, partialLinkText, tagName, className, attribute CSS
-- **Debugging win:** Fixed `partialLinkText` ambiguity by targeting specific text
-- **SDET habit:** Assertions check URL/element text, never static page titles
-
-#### ✅ Day 10: Waits – Explicit & Fluent
-- **ExplicitWaitTest:** `visibilityOfElementLocated`, `elementToBeClickable`, `textToBePresent`
-- **FluentWaitTest:** custom polling 500ms, ignoring `NoSuchElementException`, lambda conditions
-- Replaced all flaky `findElement` calls with `WebDriverWait`
-- **Key learning:** Explicit wait solves 95% of timing issues; never use `Thread.sleep`
-
-#### ✅ Day 11: Actions Class & Select Dropdowns
-- **DropdownTest:** `Select` with `selectByVisibleText`, `selectByValue`, `getOptions`, `isMultiple`
-- **MouseHoverTest:** `moveToElement` with pause, `dragAndDrop`, `contextClick`
-- **Debugging win:** Headless hover failed → fixed by targeting inner `<img>` + 800ms pause for CSS transition
-- All action tests stable in CI
-
-#### ✅ Day 12: Frames, Alerts & Windows
-- **FramesAlertsTest:**
-    - `switchTo().frame()` and `defaultContent()` verified
-    - JS Alert accept, Confirm dismiss, Prompt sendKeys with `alertIsPresent()`
-    - **Real-world fix:** TinyMCE hit read-only quota on herokuapp → migrated iframe test to stable `demoqa.com/frames`
-    - Replaced `clear()` on contenteditable with `Ctrl+A` + `Delete` via Actions
-- **WindowHandlesTest:**
-    - `getWindowHandles()` loop, `switchTo().window()`, `close()` and return to parent
-- Context switching always guarded by explicit waits
-
-### ✅ Day 13
-**Focus:** Framework foundation – centralized driver management
-**What I did:**
-- Created `BaseTest.java` with `@BeforeEach` / `@AfterEach` lifecycle
-- Integrated **WebDriverManager 5.8.0** for automatic driver binaries
-- Added headless Chrome support for CI (`--headless=new`, `--no-sandbox`, `--disable-dev-shm-usage`)
-- Implemented unique Chrome profile per thread to fix `DevToolsActivePort` errors:
-    - `UUID.randomUUID()` for `--user-data-dir`
-    - Random `--remote-debugging-port` (9222-11222)
-- Set implicit wait to 0, enforcing explicit waits only
-- **Commit:** `feat: add BaseTest with parallel-safe Chrome options`
+## 📂 Repository Structure
  
-### ✅ Day 14
-**Focus:** Data-driven testing & test design
-**What I did:**
-- Added `junit-jupiter-params:5.10.2` dependency to pom.xml
-- Built `LoginDataDrivenTest` using JUnit5 `@ParameterizedTest` + `@CsvSource`
-- Covered 3 login scenarios in one method: valid, invalid password, invalid username
-- Refactored all page objects to accept `WebDriver` via constructor (POM best practice)
-- Made all test methods `public void` for reliable Maven Surefire discovery
-- **Commit:** `feat: implement data-driven login with parameterized tests`
-
-### ✅ Day 15 – JUnit5 Extensions & Screenshot on Failure
-**Topic:** JUnit5 Parallel Execution, Custom Extensions, Screenshot Utility
+This repository includes practical implementations covering:
  
-**What I Learned:**
-- JUnit5 `@RegisterExtension` vs TestNG Listeners
-- How to implement `AfterTestExecutionCallback` for auto-screenshots
-- Maven Surefire parallel config (`junit.jupiter.execution.parallel.enabled=true`)
-- Thread-safety issues with static WebDriver in parallel runs
-- Using WebDriverManager to resolve driver version mismatches
+### ☕ Core Java
+- OOP Concepts
+- Collections Framework
+- Exception Handling
+- File Handling
+- Java 8 Features
+- Multithreading
+- Coding Practice
  
-**Practical Work:**
-- Created `ScreenshotWatcher` class implementing `AfterTestExecutionCallback`
-- Built `ScreenshotUtil.takeScreenshot()` to save PNGs to `target/screenshots/`
-- Added `ScreenshotTest` to validate failure capture (intentional assert)
-- Fixed `LocatorsDeepDiveTest` – added WebDriverManager setup, corrected `By.className("heading*")` to `By.cssSelector("h1.heading")`
-- Configured `junit-platform.properties` for parallel methods
+### 🌐 UI Automation
+- Selenium WebDriver
+- Web Elements
+- Wait Strategies
+- Frames
+- Windows
+- Alerts
+- Actions Class
+- JavaScript Executor
+- Page Object Model (POM)
+- Data-Driven Testing
  
-**Key Code:**
-- `src/test/java/oop/junit/ScreenshotTest.java`
-- `src/test/java/oop/junit/utils/ScreenshotWatcher.java`
-- `src/test/resources/junit-platform.properties`
+### 🔗 API Automation
+- REST Assured
+- CRUD Operations
+- Authentication
+- Serialization & Deserialization
+- JSON Schema Validation
+- Request & Response Validation
  
-**Outcome:**
-- All 34 JUnit tests run in parallel without `DevToolsActivePort` errors
-- Screenshots automatically saved on failure for debugging
-- Foundation ready for TestNG migration (Day 16)
+### 🧪 Test Frameworks
+- TestNG
+- JUnit 5
+- Assertions
+- Annotations
+- Listeners
+- Parallel Execution
  
-**Commit:** `test(junit): add screenshot extension and fix parallel execution issues`
-
-### ✅ Day 16 – TestNG Framework Integration (Parallel Execution)
- 
-**What I did:**
-- Kept existing JUnit5 tests intact — added TestNG 7.9.0 alongside (no breaking changes)
-- Added `allure-testng` dependency for unified reporting
-- Configured `maven-surefire-plugin 3.2.5` with both `junit-platform` and `testng` providers
-- Created `testng.xml` suite with `parallel="methods" thread-count="4"`
-- Built `BaseTestNG` with `ThreadLocal<WebDriver>` for thread-safe parallel runs
-- Simplified ChromeOptions (removed UUID user-data-dir) to fix `DevToolsActivePort` errors
-- Migrated `Login` test to TestNG using `@DataProvider(parallel = true)`
-- **Result:** `mvn clean test` → 34 JUnit + 2 TestNG tests, 100% pass
- 
-**Commit:** `feat(testng): add TestNG framework alongside JUnit5 for parallel execution`
- 
----
-### ✅ Day 17 – TestNG Advanced: Listeners & Retry Analyzer
- 
-**What I did:**
-- Implemented `IRetryAnalyzer` (RetryAnalyzer.java) – auto-retries flaky tests up to 2 times
-- Implemented `ITestListener` (TestListener.java) – captures screenshot on failure and attaches to Allure
-- Fixed access issue: changed `BaseTestNG.getDriver()` from `protected` to `public` for cross-package listener
-- Updated `testng.xml` to register listeners
-- Added retry to `@Test(dataProvider = "loginData", retryAnalyzer = RetryAnalyzer.class)`
-- Cleaned repo: removed accidentally committed `.allure/` binaries, updated `.gitignore` for `allure-results/`, `allure-report/`, `.allure/`
-- **Result:** CI pipeline green, data-driven login runs twice (valid + invalid) with parallel safety
- 
-**Commit:** `feat(testng): add RetryAnalyzer and ITestListener for auto-retry and screenshots`
- 
----
-### 🔧 Fixes Applied (during Day 16-17)
-- Fixed `LocatorsDeepDiveTest` timeout – added WebDriverManager, removed invalid `By.className("heading*")` → `By.cssSelector("h1.heading")`
-- Fixed `ScreenshotTest` intentional failure for CI stability
-- Resolved Chrome 148 CDP warnings by standardizing ChromeOptions
-
-### 📊 Current Stats (Day 17)
- 
-| Metric | Status |
-| --- | --- |
-| **Languages** | Java 17 |
-| **Build Tool** | Maven |
-| **Unit Testing** | JUnit 5 + TestNG 7.9.0 (Dual Framework) |
-| **UI Automation** | Selenium 4.25 + Chrome Headless + WebDriverManager |
-| **CI/CD** | GitHub Actions ✅ |
-| **Tests in CI** | 36 (34 JUnit + 2 TestNG data-driven) ✅ |
-| **Locators Mastered** | 9: id, name, css, xpath, linkText, partialLinkText, tagName, className, attribute |
-| **SDET Practices** | ThreadLocal driver, parallel execution, RetryAnalyzer, ITestListener, Allure reporting, explicit waits, Actions chains, frame/alert/window handling, conventional commits |
+### ⚙️ Build & DevOps
+- Maven
+- Docker (Basics)
+- GitHub Actions (CI)
 
 ---
+
+## 📊 Current Stats — Day 30 Build
+ 
+> Built in 30 days by Manual QA (3 YOE) → SDET transition
+ 
+| **Metric** | **Value** |
+|------------|-----------|
+| **Total Automated Tests** | **31+** (12 API • 19 UI) |
+| **Java Classes** | 45+ |
+| **Framework Layers** | 8 (POM, API Base, Utils, Listeners, DataFactory, Config, POJO, Schemas) |
+| **Execution Time** | API suite: ~35s (parallel 4 threads) |
+| **CI/CD Pipelines** | 2 (Maven Tests + Docker Build) |
+| **Test Data Strategy** | JSON + JavaFaker (zero hardcoding) |
+| **Reporting** | Allure with steps, retries, screenshots |
+| **Build Success** | 100% (last 10 runs) |
+ 
+### ✅ What Works Today
+- **API Automation:** RestAssured with Specs, Chaining, OAuth2, JWT, Schema Validation, WireMock, POJO, Data-Driven
+- **UI Automation:** Selenium 4 POM, Explicit/Fluent Waits, Actions, JSExecutor, ShadowDOM, Frames/Alerts, Windows
+- **Framework:** TestNG Parallel, RetryAnalyzer, TestListener, ConfigManager, TokenManager
+- **DevOps:** GitHub Actions on every push, Dockerized test execution, Maven cache
+- **Core Java:** 8 DSA basics (Factorial, Fibonacci, Palindrome, etc.) + OOP (BankAccount)
+
+---
+
+## 👨‍💻 About Me
+ 
+**Goutham T**
+ 
+Test Engineer with 3 years of experience in Manual Testing at LG Soft India, currently transitioning into an SDET role by building hands-on automation projects and continuously improving software engineering skills.
+ 
+LinkedIn:
+https://www.linkedin.com/in/goutham-t-5a20ba279
+ 
+GitHub:
+https://github.com/goutham-sdet
 
 ### How to Run
  
@@ -234,3 +158,5 @@ mvn test -Dtest=LoginTest,LocatorsDeepDiveTest,ExplicitWaitTest,FluentWaitTest,D
  
 # Generate Allure report after run
 mvn allure:serve
+
+
