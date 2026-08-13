@@ -10,7 +10,7 @@
 [![Allure Report](https://img.shields.io/badge/Allure_Report-Live-brightgreen?logo=allure&logoColor=white)](https://goutham-sdet.github.io/java-sdet-practice/allure/)
 [![API Tests](https://img.shields.io/badge/API-Parallel_4_threads-blue)](#)
 
-This repository documents my transition from Manual QA Engineer to Software Development Engineer in Test (SDET).
+This repository documents my transition from QA Engineer to Software Development Engineer in Test (SDET).
  
 The project follows a structured roadmap covering Core Java, JUnit 5, TestNG, Selenium WebDriver, Design Patterns, API Testing, and CI/CD.
  
@@ -95,9 +95,7 @@ This repository includes practical implementations covering:
 
 ---
 
-## 📊 Current Stats — Day 30 Build
- 
-> Built in 30 days by Manual QA (3 YOE) → SDET transition
+## 📊 Current Stats 
  
 | **Metric** | **Value** |
 |------------|-----------|
@@ -123,7 +121,7 @@ This repository includes practical implementations covering:
  
 **Goutham T**
  
-Test Engineer with 3 years of experience in Manual Testing at LG Soft India, currently transitioning into an SDET role by building hands-on automation projects and continuously improving software engineering skills.
+Test Engineer with 3 years of experience in Manual + Automation Testing at LG Soft India, continuosly transitioning into an SDET role by building hands-on automation projects and continuously improving software engineering skills.
  
 LinkedIn:
 https://www.linkedin.com/in/goutham-t-5a20ba279
